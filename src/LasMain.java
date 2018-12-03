@@ -7,8 +7,15 @@ public class LasMain {
         System.out.println("Witaj w grze Las!");
 
 
-        Window w = new Window("Co to za roślina?");
+       /* Window w = new Window("Witaj w grze Las!");
         w.setVisible(true);
+*/
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Window("Witaj w grze Las!");
+            }
+        });
     }
 
 }
