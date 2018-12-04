@@ -25,9 +25,11 @@ public class Window extends JFrame {
         setContentPane(pane);
         show();
 
-        setLayout(new BorderLayout());
         przycisk = new JButton("Dalej");
-        add(przycisk, BorderLayout.SOUTH);
+        przycisk.setLayout(new FlowLayout());
+        add(przycisk/*, BorderLayout.SOUTH*/);
+        przycisk.setSize(1, 1);
+        przycisk.setLocation(200,10);
         przycisk.addActionListener(new B1());
 
     }
