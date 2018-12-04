@@ -25,12 +25,13 @@ public class Window extends JFrame {
         setContentPane(pane);
         show();
 
+        setLayout(new BorderLayout());
         przycisk = new JButton("Dalej");
-        przycisk.setLayout(new FlowLayout());
-        add(przycisk/*, BorderLayout.SOUTH*/);
-        przycisk.setSize(1, 1);
-        przycisk.setLocation(200,10);
+        add(przycisk, BorderLayout.SOUTH);
+        //przycisk.setSize(10, 10);
         przycisk.addActionListener(new B1());
+        przycisk.setToolTipText("Przejdz dalej");
+        przycisk.setFocusable(false);
 
     }
 
