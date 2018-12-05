@@ -14,6 +14,9 @@ public class LasMain {
         Window w = new Window(" ");
         w.setVisible(true);
 
+
+    run 
+
     }
 
 }

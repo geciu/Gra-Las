@@ -33,6 +33,7 @@ public class Window extends JFrame {
         przycisk.setToolTipText("Przejdz dalej");
         przycisk.setFocusable(false);
 
+
     }
 
 
