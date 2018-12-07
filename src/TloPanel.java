@@ -35,12 +35,14 @@ public class TloPanel extends JPanel implements KeyListener{
     }
 
     @Override
-    public void keyReleased(KeyEvent keyEvent) {
+    public void keyReleased(KeyEvent e) {
 
     }
 
     @Override
-    public void keyTyped(KeyEvent keyEvent) {
+    public void keyTyped(KeyEvent e) {
 
     }
+
+
 }
