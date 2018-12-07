@@ -22,6 +22,6 @@ public class LasMain extends JComponent{
         Window w = new Window(" ");
         w.setContentPane(new JLabel(new ImageIcon("las.jpg")));
         w.setVisible(true);
-        
+
     }
 }
