@@ -1,6 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,16 +24,20 @@ public class Window extends JFrame {
         JPanel pane = new JPanel();
         pane.setLayout(new GridLayout(1, 1, 15, 15));
         pane.add(panel);
-        setContentPane(pane);
+        setContentPane(panel);
+        TloPanel act = new TloPanel();
+        addKeyListener(act);
+        act.addKeyListener(new B2());
         show();
 
         setLayout(new BorderLayout());
-        przycisk = new JButton("Dalej");
-        add(przycisk, BorderLayout.SOUTH);
+        //przycisk = new JButton("Dalej");
+        //add(przycisk, BorderLayout.SOUTH);
         //przycisk.setSize(10, 10);
-        przycisk.addActionListener(new B1());
-        przycisk.setToolTipText("Przejdz dalej");
-        przycisk.setFocusable(false);
+        //przycisk.addActionListener(new B1());
+
+        //przycisk.setToolTipText("Przejdz dalej");
+        //przycisk.setFocusable(true);
 
 
     }
