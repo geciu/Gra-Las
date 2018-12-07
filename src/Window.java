@@ -27,7 +27,7 @@ public class Window extends JFrame {
         setContentPane(panel);
         TloPanel act = new TloPanel();
         addKeyListener(act);
-        act.addKeyListener(new B2());
+        act.addKeyListener(new TloPanel());
         show();
 
         setLayout(new BorderLayout());

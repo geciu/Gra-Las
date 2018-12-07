@@ -6,7 +6,7 @@ import java.util.*;
 
 public class TloPanel extends JPanel implements KeyListener{
     Image back;
-    Image Pik1;
+    Image newBack;
     static ImageIcon active;
     Toolkit kit = Toolkit.getDefaultToolkit();
 
@@ -14,8 +14,8 @@ public class TloPanel extends JPanel implements KeyListener{
         super();
         setBackground(Color.white);
         back = kit.getImage("las.jpg");
+        newBack = kit.getImage("plaza.jpg");
     }
-
 
     public void paintComponent(Graphics comp) {
         Graphics2D comp2D = (Graphics2D)comp;
@@ -24,21 +24,23 @@ public class TloPanel extends JPanel implements KeyListener{
     }
 
 
-    @Override
-    public void keyTyped(KeyEvent keyEvent) {
-
-    }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
         System.out.println("Zmiana tla");
         setBackground(Color.black);
-        //back = kit.getImage("plaza.jpg");
+        back=newBack;}
         repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
 
     }
 }
