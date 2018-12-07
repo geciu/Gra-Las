@@ -10,7 +10,6 @@ public class B1 extends JButton implements ActionListener {
         System.out.println("Przycisk wcisnieto");
 
 
-
     }
 }
 

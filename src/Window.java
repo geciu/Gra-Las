@@ -19,20 +19,20 @@ public class Window extends JFrame {
         setSize(1024, 768);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel pane = new JPanel();
+        /*JPanel pane = new JPanel();
         pane.setLayout(new GridLayout(1, 1, 15, 15));
         pane.add(panel);
         setContentPane(pane);
-        show();
+        show();/*
 
-        setLayout(new BorderLayout());
+        /*setLayout(new BorderLayout());
         przycisk = new JButton("Dalej");
         add(przycisk, BorderLayout.SOUTH);
         //przycisk.setSize(10, 10);
         przycisk.addActionListener(new B1());
         przycisk.setToolTipText("Przejdz dalej");
         przycisk.setFocusable(false);
-
+*/
 
     }
 

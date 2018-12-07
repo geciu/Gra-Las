@@ -11,8 +11,6 @@ public class TloPanel extends JPanel {
         Toolkit kit = Toolkit.getDefaultToolkit();
 
         back = kit.getImage("las.jpg");
-
-
     }
 
     public void paintComponent(Graphics comp) {
