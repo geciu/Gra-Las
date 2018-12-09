@@ -1,3 +1,5 @@
+package las;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -29,19 +31,5 @@ public class Window extends JFrame {
         addKeyListener(act);
         act.addKeyListener(new TloPanel());
         show();
-
-        setLayout(new BorderLayout());
-        //przycisk = new JButton("Dalej");
-        //add(przycisk, BorderLayout.SOUTH);
-        //przycisk.setSize(10, 10);
-        //przycisk.addActionListener(new B1());
-
-        //przycisk.setToolTipText("Przejdz dalej");
-        //przycisk.setFocusable(true);
-
-
-    }
-
-
-
+        }
 }

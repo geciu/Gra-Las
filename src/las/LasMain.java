@@ -1,14 +1,6 @@
-import java.awt.*;
-import java.awt.event.*;
+package las;
+
 import javax.swing.*;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-
-
-import com.brackeen.javagamebook.graphics.*;
 
 public class LasMain extends JComponent{
 
@@ -17,6 +9,7 @@ public class LasMain extends JComponent{
         System.out.println("Witaj w grze Las!");
         Window w = new Window(" ");
         //w.setContentPane(new JLabel(new ImageIcon("las.jpg")));
+        w.setSize(1024, 768);
         w.setVisible(true);
 
     }
