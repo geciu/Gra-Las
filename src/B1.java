@@ -1,3 +1,5 @@
+import las.TloPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,10 +8,9 @@ import java.awt.event.KeyListener;
 
 
 
-public class B1 extends JButton implements ActionListener {
+public class B1 extends JFrame {
 
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("Przycisk wcisnieto"); }
+    TloPanel inne = new TloPanel();
 
 
 }

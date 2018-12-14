@@ -9,7 +9,7 @@ import java.util.*;
 public class TloPanel extends JPanel implements KeyListener{
     Toolkit kit = Toolkit.getDefaultToolkit();
     Image back;
-    Image newBack = kit.getImage("zmiana.jpg");;
+    Image newBack;
     static ImageIcon active;
 
 
@@ -25,12 +25,13 @@ public class TloPanel extends JPanel implements KeyListener{
             comp2D.drawImage(back, 0, 0, this);
     }
 
+
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
         System.out.println("Zmiana tla");
         setBackground(Color.black);
-        back=newBack;
+        newBack = kit.getImage("plaza.jpg");
 
         }
         repaint();
