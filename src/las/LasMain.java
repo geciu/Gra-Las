@@ -1,16 +1,52 @@
 package las;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
-public class LasMain extends JComponent{
+public class LasMain extends JFrame{
 
+    private JPanel contentPane;
+    private String[] images = {"tlo1.png", "tlo2.png", "tlo3.png", "tlo4.png", "tlo5.png", "tlo6.png", "tlo7.png", "tlo8.png", "tlo9.png", "tlo10.png"};
 
     public static void main(String[] args) {
-        System.out.println("Witaj w grze Las!");
-        Window w = new Window(" ");
-        //w.setContentPane(new JLabel(new ImageIcon("las.jpg")));
-        w.setSize(1024, 768);
-        w.setVisible(true);
+        EventQueue.invokeLater(new Runnable(){
+            public void run() {
+                try{
+                    LasMain frame = new LasMain();
+                    frame.setVisible(true);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
+    public LasMain(){
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 1024, 768);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JLabel lblPhoto = new JLabel("");
+        lblPhoto.setBorder(new LineBorder(new Color(0,0,0)));
+        lblPhoto.setBounds(0,0,1024,768);
+        contentPane.add(lblPhoto);
+
+        Timer timer = new Timer(2000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int n = (int) Math.floor(Math.random() *10);
+                String image = images[n];
+                lblPhoto.setIcon(new ImageIcon("src\\images\\" + image));
+            }
+        });
+        timer.start();
     }
 }

@@ -4,19 +4,18 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.*;
+
 
 public class TloPanel extends JPanel implements KeyListener{
     Toolkit kit = Toolkit.getDefaultToolkit();
     Image back;
     Image newBack;
-    static ImageIcon active;
 
 
     TloPanel() {
         super();
         setBackground(Color.white);
-        back = kit.getImage("las.jpg");
+        back = kit.getImage("lasBG.png");
     }
 
     public void paintComponent(Graphics comp) {
@@ -39,14 +38,8 @@ public class TloPanel extends JPanel implements KeyListener{
 
 
     @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public void keyReleased(KeyEvent e) { }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-
+    public void keyTyped(KeyEvent e) { }
 }
