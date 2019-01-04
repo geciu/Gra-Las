@@ -7,11 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import java.util.Date;
+import java.util.TimerTask;
 
 public class LasMain extends JFrame{
 
     private JPanel contentPane;
-    private String[] images = {"tlo1.png", "tlo2.png", "tlo3.png", "tlo4.png", "tlo5.png", "tlo6.png", "tlo7.png", "tlo8.png", "tlo9.png", "tlo10.png"};
+    private String[] images = {"tlo1.png", "tlo2.png", "tlo3.png", "tlo4.png", "tlo5.png",
+                                "tlo6.png", "tlo7.png", "tlo8.png", "tlo9.png", "tlo10.png"};
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable(){
@@ -24,6 +27,8 @@ public class LasMain extends JFrame{
                 }
             }
         });
+
+
     }
 
     public LasMain(){
@@ -48,5 +53,12 @@ public class LasMain extends JFrame{
             }
         });
         timer.start();
+        Music song = new Music();
+        song.playMusic();
+
+
+
+
+
     }
 }
