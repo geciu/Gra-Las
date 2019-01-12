@@ -40,9 +40,9 @@ public class Obrazy {
     /** Zmienna pomocnicza określająca maksymalną liczę obiektów pierwszego planu */
     public static int noOfObjects=12;
     /** Szerokość pola graficznego gry */
-    public static int gWidth= Toolkit.getDefaultToolkit().getScreenSize().width;
+    public static int gWidth= 1024;
     /** Wysokość pola graficznego gry */
-    public static int gHeight=Toolkit.getDefaultToolkit().getScreenSize().height;
+    public static int gHeight=768;
 
 
     /** Metoda ładująca zasoby gry */

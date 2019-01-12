@@ -45,7 +45,7 @@ public class GamePanel extends JPanel{
 
         restartGame();
 
-        /* Obsługa zdarzeń myszki*/
+        /* Obsługa zdarzeń myszki */
         addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent me){
@@ -144,9 +144,8 @@ public class GamePanel extends JPanel{
         if(Obrazy.pause){
             g.drawImage(Obrazy.menuGameImage,sWidth-150,sHeight- pasek -10,null);
             g.setColor(Color.red);
-            g.drawString("KONIEC GRY!",10,sHeight-10);
+            g.drawString("KONIEC!",10,sHeight-10);
             g.setColor(Color.white);
-            g.drawString("O GRZE...",300, sHeight-10);
             g.drawString("NOWA GRA!",550, sHeight-10);
 
             /** Czy wszystkie poziomy ukończono */
@@ -167,15 +166,15 @@ public class GamePanel extends JPanel{
             g.drawString(""+ stan.poziom,200, sHeight-10);
             if (Obrazy.MoveMODE>0) {
                 g.drawString("PUNKTY:",300, sHeight-10);}
-            else { g.drawString("CZAS NA NAUKE",300, sHeight-10);}
-            if (!Obrazy.levelPause) {
+
+            else if (!Obrazy.levelPause) {
                 g.drawString("" + (System.currentTimeMillis() - Obrazy.startTime) / 1000, 850, sHeight - 10);
                 //g.drawString(" " + Obrazy.rosliny[Obrazy.lastHit].getProperty("src", null), 900, sHeight - 10);
                 if (Obrazy.lastHit>0) {
                     if (Obrazy.lastHit < Obrazy.MAX_INDEX_WRONG_OBJ) {
-                        g.drawString(":(", 950, sHeight - 10);
+                        g.drawString(":( ta roślina nie jest z lasu", 950, sHeight - 10);
                     } else {
-                        g.drawString(":)", 950, sHeight - 10);
+                        g.drawString(":) leśna roślina", 950, sHeight - 10);
                     }
                 }
             }
@@ -188,7 +187,7 @@ public class GamePanel extends JPanel{
                     Obrazy.levelPause=true;
                 }
                 g.setColor(Color.RED);
-                g.drawString("GRASZ DALEJ?",500, sHeight-10);
+                g.drawString("DALEJ!",500, sHeight-10);
                 g.setFont(alert_czcionka);
                 DecimalFormat df = new DecimalFormat("#.##");
                 if (Obrazy.MoveMODE>0) {

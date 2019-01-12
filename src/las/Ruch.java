@@ -32,17 +32,11 @@ public class Ruch {
     public int rodzaj;
     /** Krok przesunięcia obiektu z dołu do góry */
     public int krok;
-    /** Kąt w funkcji sinus*/
-    private double angle;
     /** Częstotliwość funkcji sinus*/
     public double frekwencja;
-    /** Amplituda w funkcji sinus*/
-    public int amplituda;
-    /** Omega 2Pi*f */
-    public final static double w=2*Math.PI;
-    /** Szerokość pola graficznego*/
+    /** Szerokość pola graficznego */
     public int sWidth;
-    /** Wysokość pola graficznego*/
+    /** Wysokość pola graficznego */
     public int sHeight;
     /** Czy trafiono obiekt */
     public boolean traf;
@@ -55,11 +49,11 @@ public class Ruch {
         this.y=y;
         currX=x;
         currY=y;
-        this.krok =10;
+        sWidth=1024;
+        sHeight=768;
+        this.krok = 7;
         traf =false;
-
-        this.amplituda =ampl;
-        this.frekwencja =freq;
+        //this.frekwencja =freq;
 
         /** Funkcja matematyczna losująca rodzaj rośliny */
         rodzaj =(int)(0.4+Math.random()*images.length);
@@ -67,7 +61,7 @@ public class Ruch {
         icon=images[rodzaj];
         szer =icon.getWidth(null);
         wys =icon.getHeight(null);
-        setOmega(this.frekwencja);
+
     }
 
 
@@ -78,9 +72,6 @@ public class Ruch {
             switch (mode) {
                 /** Poruszanie liniowe, poziom 0*/
                 case 0:
-
-                    //currY = (int) (sHeight * Math.random());
-                    //currX = (int) (sWidth * Math.random());
                     currY = currY + krok;
                     if (currY > sHeight) {
                         currY = 0;
@@ -99,13 +90,13 @@ public class Ruch {
                     currX = x + tmpX;
                     break;
 
-                 /** Poruszanie zgodnie z funkcją sinus, poziom 2 */
+                 /** Poruszanie liniowe, poziom 2 */
                 case 2:
                     currY = currY + krok;
                     if (currY > sHeight) {
                         currY = 0;
                     }
-                    tmpX = (int) (amplituda * Math.sin(angle * currY));
+                    tmpX = 0;
                     currX = x + tmpX;
                     break;
                 default:
@@ -129,7 +120,6 @@ public class Ruch {
     public static void playMusic(String filepath){
         InputStream music;
 
-
         try {
             music = new FileInputStream(new File(filepath));
             AudioStream audios = new AudioStream(music);
@@ -138,7 +128,6 @@ public class Ruch {
         catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error");
         }
-
     }
 
 
@@ -148,7 +137,7 @@ public class Ruch {
         currY=cY;
     }
 
-    /** Metoda ustawiająca rozmiar pols graficznego */
+    /** Metoda ustawiająca rozmiar pola graficznego */
     public void setScreenSize(int gWidth, int gHeight){
         sWidth=gWidth;
         sHeight=gHeight;
@@ -164,14 +153,10 @@ public class Ruch {
         return new Point(currX,currY);
     }
 
-    /** Ustaw 2 Pi f */
-    public void setOmega(double freq){
-        angle=w*freq;
-    }
 
     /** Metoda, która sprawdza, czy "strzał" trafił obrazek. Zwraca wartość true w przypadku, gdy obraz zawiera punkt*/
     public boolean containsPoint(int x, int y){
-        //scaleWidthHeight((double)sHeight);
+        scaleWidthHeight((double)sHeight);
         if(x>=currX && x<currX+ szer){
             if(y>=(sHeight-currY) && y<(sHeight-currY+ wys)){
                 return true;
@@ -180,11 +165,10 @@ public class Ruch {
 
         return false;
     }
-/**
-    /** public void scaleWidthHeight(double scale){
- szer =(int)(icon.getWidth(null)*(1.0-currY/scale));
- wys =(int)(icon.getHeight(null)*(1.0-currY/scale));
- }
- Metoda odpowiedzilna za skalowanie poruszającego się obrazu */
 
+    /** Metoda odpowiedzilna za skalowanie poruszającego się obrazu */
+    public void scaleWidthHeight(double scale){
+    szer =(int)(icon.getWidth(null)*(1.0-currY/scale));
+    wys =(int)(icon.getHeight(null)*(1.0-currY/scale));
+ }
 }
