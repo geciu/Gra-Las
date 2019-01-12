@@ -18,23 +18,18 @@ public class Muzyka {
         super();
     }
 
-    public static void playMusic(){
+    public static void playMusic(String filepath){
         InputStream music;
 
-        AudioPlayer MGP = AudioPlayer.player;
-        AudioStream BGM;
-        AudioData MD;
-        ContinuousAudioDataStream loop = null;
 
         try {
-            BGM = new AudioStream(new FileInputStream("sounds/PayDay.mp3"));
-            MD = BGM.getData();
-            loop = new ContinuousAudioDataStream(MD);
+            music = new FileInputStream(new File(filepath));
+            AudioStream audios = new AudioStream(music);
+            AudioPlayer.player.start(audios);
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error");
         }
 
-        MGP.start(loop);
     }
 }

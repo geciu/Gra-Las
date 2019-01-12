@@ -1,24 +1,36 @@
 package las;
 
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+import javax.swing.*;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 public class LasMain {
 
     public static void main(String[] args) {
 
-        //int gameWidth=1024;
-        //int gameHeight=768;
 
-        int screenWidth=Toolkit.getDefaultToolkit().getScreenSize().width;
-        int screenHeight=Toolkit.getDefaultToolkit().getScreenSize().height;
-        int gameWidth=screenWidth;
-        int gameHeight=screenHeight;
+        int szerokoscEkranu;
+        int wysokoscEkranu;
+        int graSzerokosc;
+        int graWysokosc;
 
-        //GameWindow gw=new GameWindow(gameWidth,gameHeight, 0, 0);
-        GameWindow gw=new GameWindow(gameWidth, gameHeight,(int) (screenWidth-gameWidth)/2, (int)(screenHeight-gameHeight)/2);
 
-        Muzyka song = new Muzyka();
-        song.playMusic();
+        szerokoscEkranu=Toolkit.getDefaultToolkit().getScreenSize().width;
+        wysokoscEkranu=Toolkit.getDefaultToolkit().getScreenSize().height;
+        graSzerokosc =szerokoscEkranu;;
+        graWysokosc=wysokoscEkranu;
+
+        Muzyka muzyka = new Muzyka();
+        GameWindow okno = new GameWindow(graSzerokosc, graWysokosc,(int) (szerokoscEkranu-graSzerokosc)/2, (int)(wysokoscEkranu-graWysokosc)/2);
+
+
+        muzyka.playMusic("sounds/PayDay.wav");
     }
+
 }

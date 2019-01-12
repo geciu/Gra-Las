@@ -3,32 +3,31 @@ package las;
 import java.awt.*;
 import javax.swing.ImageIcon;
 
+/** Klasa odpowiadająca za wyświetlanie obrazków */
 public class Obrazy {
-    /**  Dopuszczalny czas gry   */
+    /** Czas gry */
     public static long GAME_TIME=Long.MAX_VALUE;
-    /**  Liczba poziomów gry   */
+    /** Liczba poziomów gry */
     public final static long NO_LEVELS=2;
-    /**   Czas rozgrywki na jednym poziomie [s] */
+    /**  Czas rozgrywki na jednym poziomie [s] */
     public final static int LEVEL_TIME_LIMIT=20;
-    /**  Ilość obiektów za które przyznaje się punkty ujemne = ilość pierwszych indeksów w tabeli rosliny */
+    /** Ilość obiektów za które przyznaje się punkty ujemne = ilość pierwszych indeksów w tabeli rosliny */
     public final static int MAX_INDEX_WRONG_OBJ = 9;
-    /**   Ostatnio trafiony indeks */
+    /** Ostatnio trafiony indeks */
     public static int lastHit=0;
-    /**  Obraz tła   */
-    public static Image bgImage;
-    /**  Obraz ikony Menu   */
+    /** Obraz tła */
+    public static Image tlo;
+    /** Obraz ikony Menu */
     public static Image menuImage;
-    /**  Obraz ikony Menu powrotu do gry  */
+    /** Obraz ikony Menu powrotu do gry */
     public static Image menuGameImage;
-    /**  Obraz ikony logo   */
-    public static Image logoImage;
-    /** Obraz ikony kursora - tarcza*/
+    /** Obraz ikony kursora */
     public static Image cursorImage;
-    /**  Tablica obiektów pierwszego planu   */
+    /** Tablica obiektów pierwszego planu */
     public static Image[] rosliny;
-    /**  Zmienna stanu określającam czy jest przerwa w grze   */
+    /** Zmienna stanu określającam czy jest przerwa w grze */
     public static boolean pause=false;
-    /** Zmienna stanu określająca czy wybrano menu*/
+    /** Zmienna stanu określająca czy wybrano menu */
     public static boolean levelPause=false;
     /** Zmienna pomocnicza określająca początkowy czas gry */
     public static long startTime;
@@ -41,27 +40,23 @@ public class Obrazy {
     /** Zmienna pomocnicza określająca maksymalną liczę obiektów pierwszego planu */
     public static int noOfObjects=12;
     /** Szerokość pola graficznego gry */
-    //public static int gWidth=1024;
     public static int gWidth= Toolkit.getDefaultToolkit().getScreenSize().width;
     /** Wysokość pola graficznego gry */
-    //public static int gHeight=768;
     public static int gHeight=Toolkit.getDefaultToolkit().getScreenSize().height;
 
-    /**
-     * Metoda ładowania początkowych zasobów gry
-     */
+
+    /** Metoda ładująca zasoby gry */
     public static void loadInitialImages() {
 
-        //bgImage = loadImage("images/lasBG.jpg");
+        tlo = loadImage("images/lasBG.jpg");
         menuImage=loadImage("images/menu.png");
         menuGameImage=loadImage("images/gra.jpg");
-        logoImage=loadImage("images/logo.png");
         cursorImage=loadImage("images/stokrotka.png");
 
-
+      /** Indeksowanie obrazów w tabeli */
         rosliny = new Image[18];
         if (MoveMODE==0){
-            bgImage = loadImage("images/lasBG.jpg");
+            tlo = loadImage("images/lasBG.jpg");
             rosliny[0] = loadImage("images0/anturium.png");
             rosliny[1] = loadImage("images0/dalia.png");
             rosliny[2] = loadImage("images0/gozdzik.png");
@@ -83,7 +78,7 @@ public class Obrazy {
 
         }
         else {
-            bgImage = loadImage("images/lasBG.jfif");
+            tlo = loadImage("images/lasBG.jfif");
             rosliny[0] = loadImage("images/anturium.png");
             rosliny[1] = loadImage("images/dalia.png");
             rosliny[2] = loadImage("images/gozdzik.png");
@@ -104,14 +99,10 @@ public class Obrazy {
             rosliny[17] = loadImage("images/siodemczak_lesny.png");
         }
 
-    }//koniec loadInitialImages()
+    }
 
-    /**
-     * Metoda pobierania obiektu klasy Image na podstawie ścieżki
-     * dostepu podanej jako String
-     */
+    /** Metoda pobierania obrazka na podstawie ścieżki dostepu podanej jako String */
     public static Image loadImage(String fileName) {
         return new ImageIcon(fileName).getImage();
-    }//koniec loadImage();
-
+    }
 }

@@ -1,14 +1,12 @@
 package las;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import javax.swing.JPanel;
 
+/** Klasa odpowiedzalna za wyswietlanie rozgrywki */
 public class GamePanel extends JPanel{
     /** Szerokość pola graficznego gry*/
     public int sWidth;
@@ -32,7 +30,7 @@ public class GamePanel extends JPanel{
 
     public GamePanel(int width, int height){
 
-        stan =new Punkty();
+        stan = new Punkty();
         stan.reset();
         menu_czcionka =new Font("Dialog",Font.BOLD,36);
         alert_czcionka =new Font("Dialog",Font.BOLD,92);
@@ -68,7 +66,7 @@ public class GamePanel extends JPanel{
                         Obrazy.end=false;
                         stan.reset();
                         Obrazy.levelPause=false;
-                        Obrazy.bgImage = Obrazy.loadImage("images/lasBG.jpg");
+                        Obrazy.tlo = Obrazy.loadImage("images/lasBG.jpg");
                         restartGame();
                         repaint();
                     }else{
@@ -77,16 +75,16 @@ public class GamePanel extends JPanel{
                             //Czy dostępny jest kolejny poziom
                             if (Obrazy.MoveMODE<= Obrazy.NO_LEVELS){
                                 Obrazy.MoveMODE++;
-                                stan.time+= Obrazy.levelTime;
+                                stan.czas += Obrazy.levelTime;
                                 Obrazy.levelPause=false;
-                                Obrazy.bgImage = Obrazy.loadImage("images/lasBG.jfif");
+                                Obrazy.tlo = Obrazy.loadImage("images/lasBG.jfif");
                                 Obrazy.loadInitialImages();
                                 stan.nextLevel();
                                 restartGame();
                             }else{
                                 //koniec poziomów = koniec gry
                                 Obrazy.end=true;
-                                stan.time+= Obrazy.levelTime;
+                                stan.czas += Obrazy.levelTime;
                                 Obrazy.pause=true;
                             }
                             repaint();
@@ -110,36 +108,39 @@ public class GamePanel extends JPanel{
                         }
                     }
                 }
-            }//koniec mouseClicked()
+            }
         });
 
 
     }
 
-
+    /**
+     * Metoda rysujaca na ekranie
+     * @param graphics obiekt odpowiedzalny za rysowanie
+     */
     @Override
-    protected void paintComponent(Graphics gs){
-        Graphics2D g=(Graphics2D)gs;
-        g.drawImage(Obrazy.bgImage, 0, 0, null);
+    protected void paintComponent(Graphics graphics){
+        Graphics2D g=(Graphics2D)graphics;
+        //g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        //Na tle obiektu pierwszego planu
+        g.drawImage(Obrazy.tlo, 0, 0, null);
+
         for(int i = 0; i< Rosliny.length; i++){
             Rosliny[i].calculatePathPos(Obrazy.MoveMODE);
-            //if(!Rosliny[i].traf)
             if((!Rosliny[i].traf) && (!Obrazy.levelPause)) {
                 g.drawImage(Rosliny[i].icon, Rosliny[i].currX, sHeight - Rosliny[i].currY, (int) (Rosliny[i].icon.getWidth(null) * (1.0 - Rosliny[i].currY / (double) sHeight)), (int) (Rosliny[i].icon.getHeight(null) * (1.0 - Rosliny[i].currY / (double) sHeight)), null);
             }
         }
 
-        //Ustaw kolor dolnego paska Menu i narysuj pasek
+        /** Ustawienie koloru paska menu */
         g.setColor(Color.BLACK);
         g.fillRect(0, sHeight- pasek, sWidth, pasek);
-        //Ustaw kolor domyślny
+        /** Kolor domyśłny */
         g.setColor(Color.white);
-        //Ustaw czcionki do wypełnienia paska Menu
+        /** Czcionka */
         g.setFont(menu_czcionka);
 
-        //Jeśli już wybrano Menu narysuj stosowną wersję paska Menu
+        /** Zarzadzanie zdarzeniami po wybraniu menu */
         if(Obrazy.pause){
             g.drawImage(Obrazy.menuGameImage,sWidth-150,sHeight- pasek -10,null);
             g.setColor(Color.red);
@@ -148,25 +149,25 @@ public class GamePanel extends JPanel{
             g.drawString("O GRZE...",300, sHeight-10);
             g.drawString("NOWA GRA!",550, sHeight-10);
 
-            //if(Obrazy.end){ //Czy wszystkie poziomy skończone - koniec gry
+            /** Czy wszystkie poziomy ukończono */
             if (Obrazy.MoveMODE >= Obrazy.NO_LEVELS){
                 g.setColor(Color.RED);
-                //g.drawString("KONIEC?",500, sHeight-10);
                 g.setFont(alert_czcionka);
                 DecimalFormat df = new DecimalFormat("#.##");
                 g.drawString("KONIEC GRY! ",170, sHeight/2);
-                g.drawString("CZAS RAZEM="+df.format(stan.time)+"s",10, sHeight/2+100);
+                g.drawString("CZAS RAZEM="+df.format(stan.czas)+"s",10, sHeight/2+100);
                 g.setColor(Color.white);
                 g.setFont(menu_czcionka);
             }
-            //Nie wybranu nic z menu - pokaż poziom i stan punktów w trakcie gry
+
+            /** W przypadku nie wybrania żądnej pozycji wyswietlanie czasu i punktów*/
         }else{
             g.drawString("POZIOM:",10, sHeight-10);
 
-            g.drawString(""+ stan.level,200, sHeight-10);
+            g.drawString(""+ stan.poziom,200, sHeight-10);
             if (Obrazy.MoveMODE>0) {
                 g.drawString("PUNKTY:",300, sHeight-10);}
-            else { g.drawString("CZAS NA NAUKĘ",300, sHeight-10);}
+            else { g.drawString("CZAS NA NAUKE",300, sHeight-10);}
             if (!Obrazy.levelPause) {
                 g.drawString("" + (System.currentTimeMillis() - Obrazy.startTime) / 1000, 850, sHeight - 10);
                 //g.drawString(" " + Obrazy.rosliny[Obrazy.lastHit].getProperty("src", null), 900, sHeight - 10);
@@ -178,8 +179,6 @@ public class GamePanel extends JPanel{
                     }
                 }
             }
-            // Czy ukończono poziom - wskazano wszystkie obiekty pozciomu
-            //long stopTime = System.currentTimeMillis();
             Obrazy.levelTime=(System.currentTimeMillis()- Obrazy.startTime)/1000.0;
 
             if((stan.points== Obrazy.noOfObjects) || (Obrazy.levelTime>Obrazy.LEVEL_TIME_LIMIT)) {
@@ -192,28 +191,19 @@ public class GamePanel extends JPanel{
                 g.drawString("GRASZ DALEJ?",500, sHeight-10);
                 g.setFont(alert_czcionka);
                 DecimalFormat df = new DecimalFormat("#.##");
-                // g.drawString("WYGRANA:"+df.format(Obrazy.levelTime)+"s",150, sHeight/2);
                 if (Obrazy.MoveMODE>0) {
                     g.drawString("TWOJE PUNKTY: " + df.format(stan.points) + "", 150, sHeight / 2);
                 }
                 g.setColor(Color.white);
                 g.setFont(menu_czcionka);
-                //Jak nie zmień punkty
             }else
             if (Obrazy.MoveMODE>0) {
                 g.drawString(""+ stan.points,500, sHeight-10);
-                //narysuj ikonę z napisem Menu
                 g.drawImage(Obrazy.menuImage,sWidth-150,sHeight- pasek -10,null);}
         }
-        //narysuj ikonę z logo
-        g.drawImage(Obrazy.logoImage,sWidth-180,sHeight- pasek +15,null);
+    }
 
-    }//
-
-    /**
-     * Restart gry - ustawienia parametrów oraz obiektów pierwszego planu
-     *
-     */
+    /** Restart gry - ustawienia parametrów oraz obiektów pierwszego planu */
     private void restartGame(){
         stan.resetPoints();
         Obrazy.startTime=System.currentTimeMillis();
@@ -233,9 +223,6 @@ public class GamePanel extends JPanel{
             }
             inLine++;
             Rosliny[i].setYPos(yLine* przesuniecie *-1);
-        }//koniec for i
-
-    }//koniec restartGame()
-
-
+        }
+    }
 }

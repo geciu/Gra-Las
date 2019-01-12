@@ -1,32 +1,36 @@
 package las;
 
+/** Klasa odpowiadająca za punkty oraz poziom gry */
 class Punkty {
+
     /** Liczba zgromadzonych punktów na danynm poziomie*/
     public int points;
     /** Numer poziomu */
-    public int level;
+    public int poziom;
     /** Czas gry na danym poziomie*/
-    public double time;
+    public double czas;
 
-    /**
-     * Zeruj parametry gry
-     */
+
+    /** Metoda odpowiadająca za resetowanie parametrów gry*/
     public void reset(){
         points=0;
-        //level=1;
-        level=0;
-        time=0.0;
-    }//reset()
-    /**
-     * Zeruj licznę punktów
-     */
+        poziom =0;
+        czas =0.0;
+    }
+
+
+    /** Metoda resetująca liczbę punktów */
     public void resetPoints(){
         points=0;
-    }//resetPoints()
-    /**
-     * Zwiększ wskaźnik poziomu
-     */
+    }
+
+
+    /** Metoda zwiększająca nmer poziomu */
     public void nextLevel(){
-        level++;
-    }//nextLevel()
+        poziom++;
+    }
+
+    public void twojePunkty(){
+        this.points=points;
+    }
 }
